@@ -27,7 +27,6 @@ def main():
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img_flip, [-x+4800, 0])
         screen.blit(koukaton, kk_rct)
-        kk_rct.move_ip((-1, 0)) # こうかとんが左に移動する
         
         key_lst = pg.key.get_pressed() #全キーの押下状態を取得
         kk_x = 0
@@ -41,7 +40,7 @@ def main():
         elif key_lst[pg.K_RIGHT]:
             kk_x, kk_y = 2, 0
 
-        kk_rct.move_ip(kk_x, kk_y)
+        kk_rct.move_ip(kk_x-1, kk_y)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
