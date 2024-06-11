@@ -13,6 +13,8 @@ def main():
     bg_img_flip = pg.transform.flip(bg_img, True, False)
     koukaton = pg.image.load("fig/3.png")
     koukaton = pg.transform.flip(koukaton, True, False)
+    kk_rct = koukaton.get_rect()    # こうかとんrectの抽出
+    kk_rct.center = 300, 200        # こうかとんの中心を300, 200に設定
     tmr = 0
     while True:
         for event in pg.event.get():
@@ -24,9 +26,17 @@ def main():
         screen.blit(bg_img_flip, [-x+1600, 0])
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bg_img_flip, [-x+4800, 0])
-        kk_rct = koukaton.get_rect() # こうかとんrectの抽出
-        kk_rct.center = 300, 200
         screen.blit(koukaton, kk_rct)
+        
+        key_lst = pg.key.get_pressed() #全キーの押下状態を取得
+        if key_lst[pg.K_UP]:
+            kk_rct.move_ip((0, -1))
+        if key_lst[pg.K_DOWN]:
+            kk_rct.move_ip((0, 1))
+        if key_lst[pg.K_LEFT]:
+            kk_rct.move_ip((-1, 0))
+        if key_lst[pg.K_RIGHT]:
+            kk_rct.move_ip((1, 0))
         pg.display.update()
         tmr += 1        
         clock.tick(200)
