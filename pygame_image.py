@@ -18,7 +18,9 @@ def main():
             if event.type == pg.QUIT: return
 
         screen.blit(bg_img, [0, 0])
-        screen.blit(koukaton, [300, 200])
+        kk_rct = koukaton.get_rect() # こうかとんrectの抽出
+        kk_rct.center = 300, 200
+        screen.blit(koukaton, kk_rct)
         pg.display.update()
         tmr += 1        
         clock.tick(200)
